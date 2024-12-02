@@ -20,6 +20,7 @@ use yii\db\ActiveQuery;
  * @property string    $middle_name    [varchar(30)] Отчество
  * @property string    $last_name      [varchar(30)] Фамилия
  * @property string    $phone          [varchar(25)] Номер телефона
+ * @property int       $attempts       [int] Кол-во попыток
  * @property int       $rules_accepted [tinyint(1)] Согласие с правилами
  * @property string    $service_data   Служебные данные
  *

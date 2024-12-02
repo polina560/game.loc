@@ -74,7 +74,8 @@ class User extends AppActiveRecord implements IdentityInterface, ExportConfig
             'access_token' => $this->authKey,
             'username' => $this->username,
             'email' => $this->email->value ?? null,
-            'is_email_confirmed' => (bool)($this->email->is_confirmed ?? null)
+            'is_email_confirmed' => (bool)($this->email->is_confirmed ?? null),
+            'attempts' => $this->userExt->attempts
         ];
     }
 
