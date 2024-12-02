@@ -177,5 +177,6 @@ return [
     'Cashback' => 'Кэшбэк',
     'Chance' => 'Шанс',
     'ID Gift' => 'ID Подарка',
-    'ID User' => 'ID Поьзователя'
+    'ID User' => 'ID Поьзователя',
+    'Attempts' => 'Попытки'
 ];

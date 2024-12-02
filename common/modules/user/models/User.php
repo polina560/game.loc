@@ -117,7 +117,8 @@ class User extends AppActiveRecord implements IdentityInterface, ExportConfig
             'userExt.middle_name',
             'userExt.last_name',
             'userExt.phone',
-            'userExt.rules_accepted'
+            'userExt.rules_accepted',
+            'attempts.attempts'
         ];
     }
 
@@ -171,6 +172,11 @@ class User extends AppActiveRecord implements IdentityInterface, ExportConfig
     }
 
     final public function getUserExt(): ActiveQuery
+    {
+        return $this->hasOne(UserExt::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    final public function getAttempts(): ActiveQuery
     {
         return $this->hasOne(UserExt::class, ['user_id' => 'id'])->inverseOf('user');
     }

@@ -43,6 +43,7 @@ class UserExt extends AppActiveRecord
         return [
             ['user_id', 'required'],
             ['user_id', 'integer'],
+            ['attempts', 'integer'],
             // name
             [['first_name', 'middle_name', 'last_name',], 'string', 'min' => 1, 'max' => 255],
             ['phone', 'string', 'min' => 10, 'max' => 20],
@@ -71,6 +72,7 @@ class UserExt extends AppActiveRecord
             'middle_name' => Yii::t(Module::MODULE_MESSAGES, 'Middle Name'),
             'last_name' => Yii::t(Module::MODULE_MESSAGES, 'Last Name'),
             'phone' => Yii::t(Module::MODULE_MESSAGES, 'Phone'),
+            'attempts' => Yii::t(Module::MODULE_MESSAGES, 'Attempts'),
             'rules_accepted' => Yii::t(Module::MODULE_MESSAGES, 'Rules Accepted'),
             'service_data' => Yii::t(Module::MODULE_MESSAGES, 'Service Data'),
         ];
