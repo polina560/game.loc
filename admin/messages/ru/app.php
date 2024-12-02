@@ -174,9 +174,12 @@ return [
 
     'User\'s Gifts' => 'Подарки пользователей',
     'Gifts' => 'Подарки',
+    'Gift' => 'Подарок',
+    'Create Gift' => 'Добавить подарок',
     'Cashback' => 'Кэшбэк',
     'Chance' => 'Шанс',
     'ID Gift' => 'ID Подарка',
     'ID User' => 'ID Поьзователя',
-    'Attempts' => 'Попытки'
+    'Attempts' => 'Попытки',
+
 ];

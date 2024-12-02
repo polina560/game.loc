@@ -80,7 +80,7 @@ $this->params['layout_class'] = 'container-fluid';
                 'format' => 'raw',
             ],
             ColumnSwitch::widget(['attr' => 'email.is_confirmed', 'editable' => false]),
-            Column::widget(['attr' => 'attempts', 'viewAttr' => 'attempts.attempts', 'editable' => false]),
+            Column::widget(['attr' => 'userExt.attempts', 'editable' => false]),
             ColumnDate::widget(['attr' => 'last_login_at', 'searchModel' => $searchModel, 'editable' => false]),
             ColumnSelect2::widget([
                 'attr' => 'status',

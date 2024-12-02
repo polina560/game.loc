@@ -119,7 +119,8 @@ class User extends AppActiveRecord implements IdentityInterface, ExportConfig
             'userExt.last_name',
             'userExt.phone',
             'userExt.rules_accepted',
-            'attempts.attempts'
+            'userExt.attempts',
+//            'attempts.attempts'
         ];
     }
 

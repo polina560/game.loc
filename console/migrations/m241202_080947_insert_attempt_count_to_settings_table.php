@@ -16,6 +16,7 @@ class m241202_080947_insert_attempt_count_to_settings_table extends Migration
             'parameter' => 'attempts_count',
             'value' => 10,
             'description' => 'Кол-во попыток у пользователей',
+            'type' => 'number'
         ]);
     }
 
@@ -24,8 +25,8 @@ class m241202_080947_insert_attempt_count_to_settings_table extends Migration
      */
     public function safeDown()
     {
-        $this->batchInsert('{{%setting}}', ['parameter', 'value', 'description'], [
-            ['attempts_count', 10, 'Кол-во попыток у пользователей'],
+        $this->batchInsert('{{%setting}}', ['parameter', 'value', 'description', 'type'], [
+            ['attempts_count', 10, 'Кол-во попыток у пользователей', 'number'],
 
         ]);
     }

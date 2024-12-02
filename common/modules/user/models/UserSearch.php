@@ -21,7 +21,7 @@ final class UserSearch extends User
     public function rules(): array
     {
         return [
-            [['id', 'status'], 'integer'],
+            [['id', 'status', 'userExt.attempts'], 'integer'],
             Status::validator('status'),
             [['created_at', 'updated_at', 'last_login_at', 'last_ip'], 'safe'],
             [['username', 'auth_source', 'password_reset_token'], 'safe'],
@@ -60,6 +60,7 @@ final class UserSearch extends User
                 'last_login_at',
                 'last_ip',
                 'status',
+                'userExt.attempts',
                 'email.value',
                 'email.is_confirmed',
                 'userExt.first_name',
@@ -81,7 +82,7 @@ final class UserSearch extends User
         }
 
         SearchQueryHelper::filterSimpleSearch(
-            ['id', 'status', 'email.is_confirmed', 'userExt.rules_accepted'],
+            ['id', 'status', 'email.is_confirmed', 'userExt.rules_accepted', 'userExt.attempts'],
             $this,
             $query
         );
