@@ -37,9 +37,11 @@ class ProfileAction extends BaseAction
     final public function run(): array
     {
         $user_id = Yii::$app->user->identity->getId();
+        /** @var UserExt $user */
         $user = UserExt::find()->where(['user_id' => $user_id])->one();
 
         if(date('j.m.Y', $user->recovery_attempts) !=  date('j.m.Y')) {
+            $user->recovery_attempts = time();
             $user->attempts = Setting::findOne(['parameter' => 'attempts_count'])->value;
             $user->save();
         }

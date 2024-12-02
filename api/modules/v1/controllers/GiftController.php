@@ -53,13 +53,6 @@ class GiftController extends AppController
                 'data' => 'У вас закончились попытки',
             ];
 
-//        $tempModel = UserGift::find()->andWhere(['id_user' => $user_id])->all();
-//        foreach($tempModel as $item)
-//            if(date('j.m.Y', $item->created_at) ==  date('j.m.Y'))
-//                return [
-//                    'success' => false,
-//                    'data' => 'Подарок уже выдан',
-//                ];
 
         $gifts = Gift::find()->all();
         $weights = [];
