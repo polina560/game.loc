@@ -10,10 +10,20 @@ use OpenApi\Attributes\Get;
 use OpenApi\Attributes\Items;
 use OpenApi\Attributes\Property;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\Expression;
+use yii\helpers\ArrayHelper;
 
 class GiftController extends AppController
 {
+
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors(): array
+    {
+        return ArrayHelper::merge(parent::behaviors(), ['auth' => ['except' => ['list']]]);
+    }
 
     /**
      * Add a Gift to User
@@ -72,6 +82,38 @@ class GiftController extends AppController
                 'errors' => $giftModel->getErrors(),
             ];
         }
+
+
+    }
+
+    /**
+     * Returns a list of Gift's
+     */
+    #[Get(
+        path: '/gift/list',
+        operationId: 'gift-list',
+        description: 'Возвращает список подарков',
+        summary: 'Список подарков',
+        security: [['bearerAuth' => []]],
+        tags: ['gift']
+    )]
+    #[JsonSuccess(content: [
+        new Property(
+            property: 'gifts', type: 'array',
+            items: new Items(ref: '#/components/schemas/Gift'),
+        )
+    ])]
+    public function actionList(): array
+    {
+
+        $query = Gift::find();
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+        return $this->returnSuccess([
+            'gifts' => $provider,
+        ]);
 
 
     }
