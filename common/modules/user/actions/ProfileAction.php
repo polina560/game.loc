@@ -4,8 +4,11 @@ namespace common\modules\user\actions;
 
 use api\behaviors\returnStatusBehavior\JsonSuccess;
 use common\components\exceptions\ModelSaveException;
+use common\models\Setting;
 use common\modules\user\helpers\UserHelper;
+use common\modules\user\models\UserExt;
 use OpenApi\Attributes\{Get, Property};
+use Yii;
 use yii\base\Exception;
 use yii\web\HttpException;
 
@@ -33,6 +36,14 @@ class ProfileAction extends BaseAction
      */
     final public function run(): array
     {
+        $user_id = Yii::$app->user->identity->getId();
+        $user = UserExt::find()->where(['user_id' => $user_id])->one();
+
+        if(date('j.m.Y', $user->recovery_attempts) !=  date('j.m.Y')) {
+            $user->attempts = Setting::findOne(['parameter' => 'attempts_count'])->value;
+            $user->save();
+        }
+
         return $this->controller->returnSuccess(UserHelper::getProfile(), 'profile');
     }
 }

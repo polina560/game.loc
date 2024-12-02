@@ -4,6 +4,8 @@ namespace common\models;
 
 use common\models\AppActiveRecord;
 use common\modules\user\models\User;
+use OpenApi\Attributes\Property;
+use OpenApi\Attributes\Schema;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -18,6 +20,8 @@ use yii\helpers\ArrayHelper;
  * @property-read Gift $gift
  * @property-read User $user
  */
+
+
 class UserGift extends AppActiveRecord
 {
     /**
@@ -32,6 +36,9 @@ class UserGift extends AppActiveRecord
     {
         return ['user.username', 'gift.title'];
     }
+
+
+
     /**
      * {@inheritdoc}
      */
@@ -54,6 +61,7 @@ class UserGift extends AppActiveRecord
             'id' => Yii::t('app', 'ID'),
             'id_gift' => Yii::t('app', 'ID Gift'),
             'id_user' => Yii::t('app', 'ID User'),
+            'created_at' => Yii::t('app', 'Created At'),
         ];
     }
 

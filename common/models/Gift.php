@@ -3,6 +3,8 @@
 namespace common\models;
 
 use common\models\AppActiveRecord;
+use OpenApi\Attributes\Property;
+use OpenApi\Attributes\Schema;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
@@ -17,6 +19,11 @@ use yii\helpers\ArrayHelper;
  *
  * @property-read UserGift[] $userGifts
  */
+
+#[Schema(properties: [
+    new Property(property: 'title', type: 'string'),
+    new Property(property: 'cashback', type: 'integer'),
+])]
 class Gift extends AppActiveRecord
 {
     /**
@@ -36,6 +43,14 @@ class Gift extends AppActiveRecord
             [['title'], 'required'],
             [['cashback', 'chance'], 'integer'],
             [['title'], 'string', 'max' => 255]
+        ];
+    }
+
+    final public function fields(): array
+    {
+        return [
+            'title',
+            'cashback',
         ];
     }
 
