@@ -5,7 +5,7 @@ use admin\models\UserAdminSearch;
 use admin\modules\modelExportImport\models\ModelImportLogSearch;
 use admin\modules\rbac\components\RbacNav;
 use common\components\helpers\UserUrl;
-use common\models\{ExportListSearch, TextSearch};
+use common\models\{ExportListSearch, GiftSearch, TextSearch, UserGiftSearch};
 use common\modules\log\Log;
 use common\modules\mail\models\{MailingLogSearch, MailingSearch, MailTemplateSearch};
 use common\modules\notification\widgets\NotificationBell;
@@ -39,7 +39,14 @@ if (!Yii::$app->user->isGuest) {
     /** @var Log $logModule */
     $logModule = Yii::$app->getModule('log');
     $menuItems = [
-        ['label' => Icon::show('chart-bar') . 'Статистика', 'url' => ['/statistic/index']],
+        [
+            'label' => Yii::t('app', 'Gifts'),
+            'url' => UserUrl::setFilters(GiftSearch::class, ['/gift/index'])
+        ],
+        [
+            'label' => Yii::t('app', 'User Gifts'),
+            'url' => UserUrl::setFilters(UserGiftSearch::class, ['/user-gift/index'])
+        ],
         [
             'label' => Icon::show('users') . 'Пользователи',
             'url' => UserUrl::setFilters(UserSearch::class, ['/user/user/index']),
@@ -76,6 +83,7 @@ if (!Yii::$app->user->isGuest) {
                     'label' => Icon::show('user-shield') . 'Администраторы',
                     'url' => UserUrl::setFilters(UserAdminSearch::class, ['/user-admin/index'])
                 ],
+                ['label' => Icon::show('chart-bar') . 'Статистика', 'url' => ['/statistic/index']],
                 '<hr>',
                 [
                     'label' => Icon::show('envelope-open') . 'Шаблоны почты',
