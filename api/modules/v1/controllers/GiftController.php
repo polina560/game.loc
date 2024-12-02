@@ -56,7 +56,6 @@ class GiftController extends AppController
 
         $userGiftModel->id_gift = $giftModel->id;
         $userGiftModel->id_user = $user_id;
-        $userGiftModel->created_at = time();
 
 
         $user->attempts -= 1;
