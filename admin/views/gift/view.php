@@ -9,6 +9,7 @@ use yii\widgets\DetailView;
 /**
  * @var $this  yii\web\View
  * @var $model common\models\Gift
+ * @var $addLink bool
  */
 
 $this->title = $model->title;
@@ -16,6 +17,7 @@ $this->params['breadcrumbs'][] = [
     'label' => Yii::t('app', 'Gifts'),
     'url' => UserUrl::setFilters(GiftSearch::class)
 ];
+
 $this->params['breadcrumbs'][] = RbacHtml::encode($this->title);
 ?>
 <div class="gift-view">
