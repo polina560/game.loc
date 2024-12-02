@@ -2,6 +2,7 @@
 
 use admin\components\GroupedActionColumn;
 use admin\components\widgets\gridView\Column;
+use admin\components\widgets\gridView\ColumnSelect2;
 use admin\modules\rbac\components\RbacHtml;
 use admin\widgets\sortableGridView\SortableGridView;
 use common\components\export\ExportMenu;
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id' => 'users-gifts-export-menu',
                 'dataProvider' => $dataProvider,
                 'staticConfig' => \common\models\UserGift::class,
-                'filename' => 'gifts_fot_users_' . date('d-m-Y_H-i-s'),
+                'filename' => 'gifts_for_users_' . date('d-m-Y_H-i-s'),
                 'batchSize' => 100,
             ]) ?>
         </div>
@@ -51,29 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => SerialColumn::class],
 
             Column::widget(),
-//            Column::widget(['attr' => 'id_gift', 'viewAttr' => 'gift.title', 'editable' => false]),
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{gift}',
-                'buttons' => [
-                    'gift' => function ($url, $model, $key) {
-                        return Html::a($model->gift->title, Url::toRoute(['gift/view', 'id' => $model->id_gift]), ['data-pjax' => '0']);
-
-                    },
-                ],
-            ],
-//            Column::widget(['attr' => 'id_user', 'viewAttr' => 'user.username', 'editable' => false]),
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => '{user}',
-                'buttons' => [
-                    'user' => function ($url, $model, $key) {
-                        return Html::a($model->user->username, Url::toRoute(['user/user/view', 'id' => $model->id_user]), ['data-pjax' => '0']);
-
-                    },
-                ],
-            ],
-
+            ColumnSelect2::widget(['attr' => 'id_gift', 'viewAttr' => 'gift.title', 'pathLink' => 'gift', 'editable' => false]),
+            ColumnSelect2::widget(['attr' => 'id_user', 'viewAttr' => 'user.username', 'pathLink' => 'user/user', 'editable' => false]),
+            
             ['class' => GroupedActionColumn::class,
                 'buttons' => [
                     'update' => function () {
