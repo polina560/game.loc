@@ -61,9 +61,28 @@ class GiftController extends AppController
 //                    'data' => 'Подарок уже выдан',
 //                ];
 
-        $giftModel = Gift::find()->orderBy(new Expression('rand()'))->one();
-        $userGiftModel = new UserGift();
+        $gifts = Gift::find()->all();
+        $weights = [];
+        $total = 0;
 
+        foreach ($gifts as $gift) {
+            $total += $gift->chance;
+            $weights[] = $total;
+        }
+
+        $random = mt_rand(0, $total - 1);
+        $giftModel = null;
+        foreach($weights as $index => $weight)
+        {
+            if($random < $weight)
+            {
+                $giftModel = $gifts[$index];
+                break;
+            }
+        }
+
+
+        $userGiftModel = new UserGift();
         $userGiftModel->id_gift = $giftModel->id;
         $userGiftModel->id_user = $user_id;
 
