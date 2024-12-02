@@ -14,7 +14,7 @@ use yii\widgets\ListView;
  * @var $model        common\models\UserGift
  */
 
-$this->title = Yii::t('app', 'User Gifts');
+$this->title = Yii::t('app', 'User\'s Gifts');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-gift-index">

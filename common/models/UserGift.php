@@ -52,8 +52,8 @@ class UserGift extends AppActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'id_gift' => Yii::t('app', 'Id Gift'),
-            'id_user' => Yii::t('app', 'Id User'),
+            'id_gift' => Yii::t('app', 'ID Gift'),
+            'id_user' => Yii::t('app', 'ID User'),
         ];
     }
 

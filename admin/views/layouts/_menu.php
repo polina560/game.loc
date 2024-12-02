@@ -44,7 +44,7 @@ if (!Yii::$app->user->isGuest) {
             'url' => UserUrl::setFilters(GiftSearch::class, ['/gift/index'])
         ],
         [
-            'label' => Yii::t('app', 'User Gifts'),
+            'label' => Yii::t('app', 'User\'s Gifts'),
             'url' => UserUrl::setFilters(UserGiftSearch::class, ['/user-gift/index'])
         ],
         [
