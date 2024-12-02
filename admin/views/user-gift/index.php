@@ -6,6 +6,8 @@ use admin\modules\rbac\components\RbacHtml;
 use admin\widgets\sortableGridView\SortableGridView;
 use common\components\export\ExportMenu;
 use kartik\grid\SerialColumn;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 
 /**
@@ -49,8 +51,28 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => SerialColumn::class],
 
             Column::widget(),
-            Column::widget(['attr' => 'id_gift', 'viewAttr' => 'gift.title', 'editable' => false]),
-            Column::widget(['attr' => 'id_user', 'viewAttr' => 'user.username', 'editable' => false]),
+//            Column::widget(['attr' => 'id_gift', 'viewAttr' => 'gift.title', 'editable' => false]),
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{gift}',
+                'buttons' => [
+                    'gift' => function ($url, $model, $key) {
+                        return Html::a($model->gift->title, Url::toRoute(['gift/view', 'id' => $model->id_gift]), ['data-pjax' => '0']);
+
+                    },
+                ],
+            ],
+//            Column::widget(['attr' => 'id_user', 'viewAttr' => 'user.username', 'editable' => false]),
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{user}',
+                'buttons' => [
+                    'user' => function ($url, $model, $key) {
+                        return Html::a($model->user->username, Url::toRoute(['user/user/view', 'id' => $model->id_user]), ['data-pjax' => '0']);
+
+                    },
+                ],
+            ],
 
             ['class' => GroupedActionColumn::class,
                 'buttons' => [
