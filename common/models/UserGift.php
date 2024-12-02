@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\models\AppActiveRecord;
 use common\modules\user\models\User;
+use common\modules\user\Module;
 use OpenApi\Attributes\Property;
 use OpenApi\Attributes\Schema;
 use Yii;
@@ -73,5 +74,17 @@ class UserGift extends AppActiveRecord
     final public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'id_user']);
+    }
+
+    public static function getColumns(): array
+    {
+        Module::initI18N();
+        return [
+            'id',
+//            'id_gift',
+//            'id_user',
+            'user.username',
+            'gift.title',
+        ];
     }
 }

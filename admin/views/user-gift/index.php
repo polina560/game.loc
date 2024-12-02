@@ -4,6 +4,7 @@ use admin\components\GroupedActionColumn;
 use admin\components\widgets\gridView\Column;
 use admin\modules\rbac\components\RbacHtml;
 use admin\widgets\sortableGridView\SortableGridView;
+use common\components\export\ExportMenu;
 use kartik\grid\SerialColumn;
 use yii\widgets\ListView;
 
@@ -27,6 +28,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ////           $this->render('_create_modal', ['model' => $model]);
 //        ?>
 <!--    </div>-->
+
+    <div class="row justify-content-between">
+        <div class="col-auto mr-auto">
+            <?= ExportMenu::widget([
+                'id' => 'users-gifts-export-menu',
+                'dataProvider' => $dataProvider,
+                'staticConfig' => \common\models\UserGift::class,
+                'filename' => 'gifts_fot_users_' . date('d-m-Y_H-i-s'),
+                'batchSize' => 100,
+            ]) ?>
+        </div>
+    </div>
 
     <?= SortableGridView::widget([
         'dataProvider' => $dataProvider,
